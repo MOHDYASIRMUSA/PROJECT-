@@ -1,0 +1,124 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+struct node
+{
+    int data;
+    struct node *next;
+};
+  
+
+void addFirst(struct node **head, int val)
+{
+     
+      struct node *newNode = malloc(sizeof(struct node));
+      newNode->data = val;
+
+      newNode->next = *head;
+
+      *head = newNode;
+}
+void addLast(struct node **head, int val)
+{
+    
+    struct node *newNode = malloc(sizeof(struct node));
+    newNode->data = val;
+    newNode->next     = NULL;
+
+
+    if(*head == NULL)
+         *head = newNode;
+    
+    else
+    {
+        struct node *lastNode = *head;
+        while(lastNode->next != NULL)
+        {
+            lastNode = lastNode->next;
+        }
+
+        lastNode->next = newNode;
+    }
+
+}
+
+void printList(struct node *head)
+{
+    struct node *temp = head;
+    while(temp != NULL)
+    {
+         printf("%d->", temp->data);
+         temp = temp->next;
+    }
+    printf("NULL\n");
+}
+void randominsert(int item,struct node *head)  
+    {  
+        struct node *ptr = (struct node *) malloc (sizeof(struct node));  
+        struct node *temp;  
+        int i,loc;  
+        if(ptr == NULL)  
+        {  
+            printf("\nOVERFLOW");  
+        }  
+        else  
+        {  
+              
+            printf("Enter the location");  
+            scanf("%d",&loc);             
+            ptr->data = item;  
+            temp=head;  
+            for(i=0;i<loc;i++)  
+            {  
+                temp = temp->next;  
+                if(temp == NULL)  
+                {  
+                    printf("\ncan't insert\n");  
+                    return;  
+                }  
+              
+            }  
+            ptr ->next = temp ->next;   
+            temp ->next = ptr;   
+            printf("\nNode inserted");  
+        }  
+          
+    }  
+void getLength(struct node *head)
+{
+
+    int length =0;
+
+    while(head != NULL)
+    {
+
+        head = head->next;
+
+        length++;
+
+    }
+    printf("length is %d",length);
+}
+int main()
+{ int item;
+     struct node *head = NULL;
+
+     addFirst(&head,10);
+     addFirst(&head,20);
+     addFirst(&head,30);
+
+     printList(head);
+     
+     addLast(&head,40);
+     addLast(&head,50);
+     addLast(&head,60);
+
+     printList(head);
+     printf("enter the data");
+     scanf("%d",&item);
+     randominsert(item,head);
+     printList(head);
+     getLength(head);
+
+     return 0;
+}

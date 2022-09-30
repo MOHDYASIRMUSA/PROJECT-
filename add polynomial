@@ -114,6 +114,7 @@ int main()
 	printf("\nSecond polynomial:\n");
 	readPolynomial(&second);
 	displayPolynomial(second);
+	printf("\nresult is:\n");
 	addPolynomials(&result, first, second);
 	displayPolynomial(result);
 	return 0;
